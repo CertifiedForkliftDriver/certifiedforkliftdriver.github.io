@@ -1,0 +1,44 @@
+.search-wrapper{
+    display : flex;
+    background: transparent;
+    padding: 20 px 18px;
+    font-size: 18px;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+input{
+    font-size: 1rem;
+}
+
+.hode{
+    display: none;
+}
+
+.carrousel{
+    display: grid;
+    grid-auto-flow: column;
+    scroll-behavior: auto;
+    gap: 1.2rem;
+    overflow-y: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+.carrousel::webkit-scrollbar{
+    display:none;
+}
+.card{
+    scroll-snap-align: start;
+    border-radius: 30px;
+    min-height: 200px;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card::nth-child(odd){
+    background: linear-gradient(-229deg, yellow, pink);
+}
+.card::nth-child(even){
+    background: linear-gradient(-229deg, yellow,blue);
+}
