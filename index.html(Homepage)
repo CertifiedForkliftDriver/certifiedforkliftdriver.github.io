@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="javascript.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <body background= "https://coolbackgrounds.io/images/backgrounds/index/ranger-4df6c1b6.png"></body>
+    <img src="file:///Users/Joel/Documents/gambox_logo.png" width=200 height=240>
+    <div class="search-wrapper">
+        <label for="search">Search Video Games</label>
+        <input type="search" id="search">
+       
+        <div class="conteudo">
+            <div class="carrousel">
+                <article class="card">
+                    <img src="https://www.fifplay.com/img/public/fifa-23-cover-star-kylian-mbappe-psg.jpg" width="240" 
+                    height="310">
+                </article>
+               
+                <article class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/0/02/CoD_Black_Ops_cover.png"width="240" 
+                    height="310">
+                </article>
+        
+                <article class="card">
+                   <img src="https://upload.wikimedia.org/wikinews/en/7/7a/Minecraft_game_cover.jpeg"width="240" 
+                   height="310">
+                </article>
+                
+                <article class="card">
+                  <img src="https://impdb.org/images/a/a9/PUBG_Cover.jpg"width="240" 
+                  height="310">
+                </article>
+              
+                <article class="card">
+                   <img src= "https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg"width="240" 
+                   height="310">
+                </article>
+            </div>        </div>
+     
+</body>
+</html>
