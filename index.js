@@ -20,7 +20,7 @@ const firebaseApp = initializeApp = {
 };
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
-const 
+
 
 // Detect auth state
 onAuthStateChanged(auth, user => {
