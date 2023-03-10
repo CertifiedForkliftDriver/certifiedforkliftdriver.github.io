@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="/index.js" defer></script>
+    <title>GameBox DataBase</title>
+</head>
+<body>
+    <body background= "https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/05/black-paper-background.jpg?resize=1250,1120"></body>
+    <img src="file:///Users/Joel/Documents/GB_logo.png" width=80 height=80>
+       <!-- Button to open the modal login form -->
+<button onclick="document.getElementById('id01').style.display='block' ">Login</button >
+
+<!-- The Modal -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" 
+class="close" title="Close Modal">&times;</span>
+
+  <!-- Modal Content -->
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+<script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
+       <div class="search-wrapper">
+        <label for="search">Search Video Games</label>
+        <input type="search" id="search">
+        <div class="conteudo">
+            <div class="carrousel">
+                <article class="card">
+                    <img src="https://www.fifplay.com/img/public/fifa-23-cover-star-kylian-mbappe-psg.jpg" width="240" 
+                    height="200"
+                    width="150">
+                </article>
+               
+                <article class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/0/02/CoD_Black_Ops_cover.png"width="240" 
+                    height="200"
+                    width="100">
+                </article>
+        
+                <article class="card">
+                   <img src="https://upload.wikimedia.org/wikinews/en/7/7a/Minecraft_game_cover.jpeg"width="240" 
+                   height="200"
+                   width="175">
+                </article>
+                
+                <article class="card">
+                  <img src="https://impdb.org/images/a/a9/PUBG_Cover.jpg"width="240" 
+                  height="200"
+                  width="70">
+                </article>
+              
+                <article class="card">
+                   <img src= "https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg"width="240" 
+                   height="200"
+                   width="140">
+                </article>
+            </div>        </div>
+     
+</body>
+</html>
