@@ -20,6 +20,7 @@ const firebaseApp = initializeApp = {
 };
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
+const 
 
 // Detect auth state
 onAuthStateChanged(auth, user => {
@@ -33,5 +34,5 @@ onAuthStateChanged(auth, user => {
 
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseApp);
 const analytics = getAnalytics(app);
