@@ -1,3 +1,4 @@
+// This is the feature that allows responsive menu changes in the nav bar when you shrink the window size
 const toggleBtn = document.querySelector('.toggle_btn')
 const toggleBtnIcon = document.querySelector('.toggle_btn i')
 const dropDownMenu = document.querySelector('.dropdown_menu')
