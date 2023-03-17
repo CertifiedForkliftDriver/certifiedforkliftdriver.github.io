@@ -1,7 +1,6 @@
 body {
   height: 100vh;
   background-color: #242424;
-  
 }
 
 *{
@@ -39,6 +38,15 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* Navbar logo image*/
+.navbar img{
+  width: 100px;
+  height: 100px;
+  float: left;
+  cursor: pointer;
+  padding-top: 12px;
 }
 
 .navbar .logo a{
