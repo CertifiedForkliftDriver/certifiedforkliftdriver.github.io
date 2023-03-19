@@ -122,6 +122,91 @@ header{
   justify-content: center; 
 }
 
+.content .banner {
+  position: relative;
+  height: 500px;
+  color: #fff;
+  background: #111111 url(./images/1.jpg) no-repeat center;
+  background-size: cover;
+}
+.content .banner .box {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 15px;
+  width: 100%;
+  display: flex;
+  background: rgba(17, 17, 17, 0.6);
+}
+.content .banner .box img {
+  margin-right: 50px;
+  width: 300px;
+}
+.content .banner .box .text h3 {
+  margin-bottom: 15px;
+  font-size: 30px;
+}
+.content .banner .box .text p {
+  margin-bottom: 15px;
+}
+.content .banner .box .text .btn {
+  color: #fff;
+  padding: 15px 35px;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #208de7;
+  border: 1px solid #208de7;
+}
+.content .banner .box .text .btn:hover {
+  transition: all 0.3s;
+  color: #208de7;
+  background: #fff;
+}
+.content .tit {
+  padding-left: 15px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  border-left: 5px solid #fff;
+}
+.content .log {
+  padding: 15px;
+  color: #fff;
+  background: #111111;
+}
+.content .log .pic {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.content .log .pic img {
+  width: 49%;
+  height: 320px;
+}
+.content .log .pic img:hover {
+  transition: all 0.3s;
+  transform: scale(1.1);
+}
+.content .log p {
+  line-height: 1.5;
+  font-size: 14px;
+}
+.content .log .bage {
+  margin-right: 3px;
+  padding: 1px 5px;
+  font-size: 14px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+.content .log .bage:hover {
+  transition: all 0.3s;
+  color: #fff;
+  background: #208de7;
+}
 /* Hero (body text) */ 
 section#hero{
   height: calc(100vh - 60px);
