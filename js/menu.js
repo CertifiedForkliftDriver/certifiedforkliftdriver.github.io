@@ -12,6 +12,3 @@ toggleBtn.onclick = function () {
     : 'fa-solid fa-bars'
 }
 
-//Getting started button linked with login .html file
-
-
