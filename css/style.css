@@ -329,6 +329,10 @@ section#hero {
 
 
 
+body {
+  background-color: #373737;
+}
+
 .container {
   margin: 0 auto;
   max-width: 400px;
