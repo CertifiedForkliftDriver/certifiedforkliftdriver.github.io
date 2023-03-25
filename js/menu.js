@@ -11,4 +11,8 @@ toggleBtn.onclick = function () {
     ? 'fa-solid fa-xmark'
     : 'fa-solid fa-bars'
 }
-
+const firebaseConfig = {
+    // Your Firebase project configuration goes here
+  };
+  
+  firebase.initializeApp(firebaseConfig);
