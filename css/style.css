@@ -336,37 +336,43 @@ form {
 }
 
 label {
+  margin-top: 20px;
   font-size: 18px;
   font-weight: bold;
-  margin-top: 20px;
 }
 
 input[type="email"],
 input[type="password"] {
-  width: 300px;
-  height: 40px;
-  font-size: 18px;
   padding: 10px;
-  margin-top: 10px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 400px;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-button[type="submit"] {
-  width: 200px;
-  height: 50px;
-  font-size: 20px;
-  font-weight: bold;
+button[type="submit"],
+button[type="button"] {
+  padding: 10px 20px;
   margin-top: 20px;
-  color: #fff;
-  background-color: #007aff;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover,
+button[type="button"]:hover {
   background-color: #0069d9;
+}
+
+button[type="submit"]:active,
+button[type="button"]:active {
+  background-color: #005cbf;
+  box-shadow: none;
 }
