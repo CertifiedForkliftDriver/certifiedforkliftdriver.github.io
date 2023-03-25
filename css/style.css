@@ -286,6 +286,62 @@ header {
   color: #208de7;
 }
 
+.contentAbout .about {
+  padding: 20px;
+  background: #111111;
+}
+
+.contentAbout .about .ipt {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.contentAbout .about .ipt:hover {
+  transition: all 0.3s;
+  background: #242424;
+}
+
+.contentAbout .about .ipt img {
+  margin-right: 15px;
+  width: 25px;
+}
+
+.contentAbout .about .ipt input {
+  margin-right: 15px;
+  padding-left: 15px;
+  flex: 1;
+  height: 40px;
+}
+
+.contentAbout .about .ipt input:last-child {
+  margin-right: 0;
+}
+
+.contentAbout .about .ipt textarea {
+  padding: 15px;
+  width: 100%;
+  min-height: 230px;
+  resize: none;
+  outline: none;
+}
+
+.contentAbout .about .ipt button {
+  padding: 15px 35px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.contentAbout .about .ipt button:hover {
+  transition: all 0.3s;
+  color: #fff;
+  background: #242424;
+  border: 1px solid #fff;
+}
+
 
 /* Hero (body text) */
 
