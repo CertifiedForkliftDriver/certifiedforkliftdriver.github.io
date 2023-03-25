@@ -11,9 +11,22 @@ toggleBtn.onclick = function () {
     ? 'fa-solid fa-xmark'
     : 'fa-solid fa-bars'
 }
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
+// Initialize Firebase
+
+
+const app = firebase.initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app)
+
+// Handle sign-up form submit
+const loginForm = document.getElementById('login-form');
+const loginBtn = document.getElementById('login-btn');
+const signupBtn = document.getElementById('signup-btn');
+
 // Initialize Firebase
 const firebaseConfig = {
           apiKey: "AIzaSyBP_8A81Fbfmake_3Qg_5KhWd6-1XtfM0k",
@@ -23,45 +36,55 @@ const firebaseConfig = {
           messagingSenderId: "745560099853",
           appId: "1:745560099853:web:5b2699432e6cfec03bd944",
           measurementId: "G-GC71CVBP6X"
-  // your firebase configuration here
+  // Your Firebase config object here
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app)
+firebase.initializeApp(firebaseConfig);
+const authenticate = firebase.auth();
 
-// Handle sign-up form submit
-const signUpForm = document.querySelector('#sign-up-form');
-signUpForm.addEventListener('submit', (event) => {
-  event.preventDefault();
+// Function to handle login and sign up form submission
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  
+  // Determine whether the user is logging in or signing up
+  if (loginBtn.textContent === 'Log In') {
+    // Log in the user
+    auth.signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        // User logged in successfully, do something
+        console.log('User logged in:', userCredential.user);
+      })
+      .catch(error => {
+        // Handle login error
+        console.error('Login error:', error.message);
+      });
+  } else {
+    // Sign up the user
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        // User signed up successfully, do something
+        console.log('User signed up:', userCredential.user);
+      })
+      .catch(error => {
+        // Handle signup error
+        console.error('Signup error:', error.message);
+      });
+  }
+}
 
-  const email = signUpForm.email.value;
-  const password = signUpForm.password.value;
+// Function to toggle between login and signup modes
+function toggleMode() {
+  if (loginBtn.textContent === 'Log In') {
+    loginBtn.textContent = 'Sign Up';
+    signupBtn.textContent = 'Log In';
+  } else {
+    loginBtn.textContent = 'Log In';
+    signupBtn.textContent = 'Sign Up';
+  }
+}
 
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // User signed up successfully
-      console.log(userCredential.user);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-});
-
-// Handle login form submit
-const loginForm = document.querySelector('#login-form');
-loginForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const email = loginForm.email.value;
-  const password = loginForm.password.value;
-
-  firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // User logged in successfully
-      console.log(userCredential.user);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-});
+// Add event listeners to the login and signup buttons
+loginBtn.addEventListener('click', handleFormSubmit);
+signupBtn.addEventListener('click', toggleMode);
