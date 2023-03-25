@@ -22,9 +22,8 @@ const app = firebase.initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 
-// Handle sign-up form submit
-
-const firebaseConfig = {
+// Initialize Firebase
+var firebaseConfig = {
           apiKey: "AIzaSyBP_8A81Fbfmake_3Qg_5KhWd6-1XtfM0k",
           authDomain: "gamebox-381701.firebaseapp.com",
           projectId: "gamebox-381701",
@@ -34,53 +33,63 @@ const firebaseConfig = {
           measurementId: "G-GC71CVBP6X"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
+// Get references to the email and password fields
+// Get input fields and buttons
+var emailField = document.getElementById("email");
+var passwordField = document.getElementById("password");
+var loginBtn = document.getElementById("login-btn");
+var signupBtn = document.getElementById("signup-btn");
 
-const loginForm = document.querySelector("#login-form");
-const emailInput = document.querySelector("#email-input");
-const passwordInput = document.querySelector("#password-input");
+// Add login event listener
+loginBtn.addEventListener("click", function() {
+  var email = emailField.value;
+  var password = passwordField.value;
 
-const signupForm = document.querySelector("#signup-form");
-const signupEmailInput = document.querySelector("#signup-email-input");
-const signupPasswordInput = document.querySelector("#signup-password-input");
+  // Validate email and password
+  if (email === "" || password === "") {
+    alert("Please enter an email and password.");
+    return;
+  }
 
-const loginButton = document.querySelector("#login-button");
-const signupButton = document.querySelector("#signup-button");
-const logoutButton = document.querySelector("#logout-button");
-
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const email = emailInput.value;
-  const password = passwordInput.value;
-
-  auth
-    .signInWithEmailAndPassword(email, password)
-    .then(() => {
-      console.log("User logged in");
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(function() {
+      // Redirect to the dashboard page
+      window.location.href = "dashboard.html";
     })
-    .catch((error) => {
-      console.error(error);
+    .catch(function(error) {
+      // Handle login error
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log("Error: " + errorCode + " - " + errorMessage);
     });
 });
 
-signupForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const email = signupEmailInput.value;
-  const password = signupPasswordInput.value;
+// Add signup event listener
+signupBtn.addEventListener("click", function() {
+  var email = emailField.value;
+  var password = passwordField.value;
 
-  auth
-    .createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log("User created: ", user.uid);
+  // Validate email and password
+  if (email === "" || password === "") {
+    alert("Please enter an email and password.");
+    return;
+  }
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters.");
+    return;
+  }
+
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(function() {
+      // Redirect to the dashboard page
+      window.location.href = "dashboard.html";
     })
-    .catch((error) => {
-      console.error(error);
+    .catch(function(error) {
+      // Handle signup error
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log("Error: " + errorCode + " - " + errorMessage);
     });
 });
-
-
