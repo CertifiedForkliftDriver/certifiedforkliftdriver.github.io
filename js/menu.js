@@ -11,8 +11,46 @@ toggleBtn.onclick = function () {
     ? 'fa-solid fa-xmark'
     : 'fa-solid fa-bars'
 }
+
+// Initialize Firebase
 const firebaseConfig = {
-    // Your Firebase project configuration goes here
-  };
-  
-  firebase.initializeApp(firebaseConfig);
+  // your firebase configuration here
+};
+
+firebase.initializeApp(firebaseConfig);
+
+// Handle sign-up form submit
+const signUpForm = document.querySelector('#sign-up-form');
+signUpForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const email = signUpForm.email.value;
+  const password = signUpForm.password.value;
+
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // User signed up successfully
+      console.log(userCredential.user);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
+// Handle login form submit
+const loginForm = document.querySelector('#login-form');
+loginForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const email = loginForm.email.value;
+  const password = loginForm.password.value;
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // User logged in successfully
+      console.log(userCredential.user);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
