@@ -20,6 +20,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase
 
 const app = firebase.initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const auth = getAuth(app);
 
 
 // Initialize Firebase
