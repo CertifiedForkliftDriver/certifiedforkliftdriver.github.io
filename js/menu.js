@@ -43,48 +43,66 @@ firebase.initializeApp(firebaseConfig);
 const authenticate = firebase.auth();
 
 // Function to handle login and sign up form submission
-function handleFormSubmit(e) {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  
-  // Determine whether the user is logging in or signing up
-  if (loginBtn.textContent === 'Log In') {
-    // Log in the user
-    auth.signInWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        // User logged in successfully, do something
-        console.log('User logged in:', userCredential.user);
-      })
-      .catch(error => {
-        // Handle login error
-        console.error('Login error:', error.message);
-      });
-  } else {
-    // Sign up the user
-    auth.createUserWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        // User signed up successfully, do something
-        console.log('User signed up:', userCredential.user);
-      })
-      .catch(error => {
-        // Handle signup error
-        console.error('Signup error:', error.message);
-      });
-  }
+
+
+// Function to sign up a new user
+function signUpUser(email, password) {
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log("User created successfully!");
+      // Redirect the user to the home page or dashboard
+      // Here you can add your own logic to redirect to the appropriate page
+    })
+    .catch((error) => {
+      console.error("Error creating user: ", error);
+      // Show an error message to the user
+      // Here you can add your own logic to display the error message to the user
+    });
 }
 
-// Function to toggle between login and signup modes
-function toggleMode() {
-  if (loginBtn.textContent === 'Log In') {
-    loginBtn.textContent = 'Sign Up';
-    signupBtn.textContent = 'Log In';
-  } else {
-    loginBtn.textContent = 'Log In';
-    signupBtn.textContent = 'Sign Up';
-  }
+// Function to handle the sign-up form submission
+function handleSignUpSubmit(event) {
+  event.preventDefault();
+
+  // Get the user's email and password from the form
+  const email = document.querySelector("#email").value;
+  const password = document.querySelector("#password").value;
+
+  // Call the signUpUser function with the email and password
+  signUpUser(email, password);
 }
 
-// Add event listeners to the login and signup buttons
-loginBtn.addEventListener('click', handleFormSubmit);
-signupBtn.addEventListener('click', toggleMode);
+// Function to log in an existing user
+function logInUser(email, password) {
+  auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log("User logged in successfully!");
+      // Redirect the user to the home page or dashboard
+      // Here you can add your own logic to redirect to the appropriate page
+    })
+    .catch((error) => {
+      console.error("Error logging in user: ", error);
+      // Show an error message to the user
+      // Here you can add your own logic to display the error message to the user
+    });
+}
+
+// Function to handle the login form submission
+function handleLoginSubmit(event) {
+  event.preventDefault();
+
+  // Get the user's email and password from the form
+  const email = document.querySelector("#email").value;
+  const password = document.querySelector("#password").value;
+
+  // Call the logInUser function with the email and password
+  logInUser(email, password);
+}
+
+// Add an event listener to the sign-up button
+const signUpButton = document.querySelector("#signup");
+signUpButton.addEventListener("click", handleSignUpSubmit);
+
+// Add an event listener to the login button
+const loginButton = document.querySelector("#login");
+loginButton.addEventListener("click", handleLoginSubmit);
