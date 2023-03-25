@@ -353,7 +353,8 @@ input[type="password"] {
 }
 
 button[type="submit"],
-button[type="button"] {
+button[type="button"],
+button[type="signup"] {
   padding: 10px 20px;
   margin-top: 20px;
   border: none;
@@ -367,12 +368,14 @@ button[type="button"] {
 }
 
 button[type="submit"]:hover,
-button[type="button"]:hover {
+button[type="button"]:hover,
+button[type="signup"]:hover {
   background-color: #0069d9;
 }
 
 button[type="submit"]:active,
-button[type="button"]:active {
+button[type="button"]:active,
+button[type="signup"]:active {
   background-color: #005cbf;
   box-shadow: none;
 }
