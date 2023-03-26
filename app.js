@@ -2,6 +2,9 @@
 const toggleBtn = document.querySelector('.toggle_btn')
 const toggleBtnIcon = document.querySelector('.toggle_btn i')
 const dropDownMenu = document.querySelector('.dropdown_menu')
+const wrapper = document.querySelector('.wrapper');
+const loginLink = document.querySelector('.login-link');
+const registerLink = document.querySelector('.register-link');
 
 toggleBtn.onclick = function () {
     dropDownMenu.classList.toggle('open')
@@ -12,6 +15,13 @@ toggleBtn.onclick = function () {
     : 'fa-solid fa-bars'
 }
 
+registerLink.addEventListener('click', ()=>{
+    wrapper.classList.add('active');
+})
+
+loginLink.addEventListener('click', ()=>{
+    wrapper.classList.remove('active');
+})
 //Getting started button linked with login .html file
 
 
