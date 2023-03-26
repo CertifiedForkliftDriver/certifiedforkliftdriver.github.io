@@ -107,10 +107,6 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const toggleBtn = document.querySelector('.toggle_btn');
-    const toggleBtnIcon = document.querySelector('.toggle_btn i');
-    const dropDownMenu = document.querySelector('.dropdown_menu');
-    // Get elements from the HTML document
     const loginForm = document.querySelector('#login-form');
     const emailInput = document.querySelector('#email-input');
     const passwordInput = document.querySelector('#password-input');
@@ -118,14 +114,7 @@
     const signUpButton = document.querySelector('#signup-button');
     const loginError = document.querySelector('#login-error');
     
-    toggleBtn.onclick = function () {
-      dropDownMenu.classList.toggle('open')
-      const isOpen = dropDownMenu.classList.contains('open')
-
-      toggleBtnIcon.classList = isOpen 
-      ? 'fa-solid fa-xmark'
-      : 'fa-solid fa-bars'
-    }
+    
     const userSignIn = async() => {
         const signInEmail = emailInput.value;
         const signInPassword = passwordInput.value;
@@ -173,6 +162,7 @@
     }
 
     </script>
+    <script src="js/menu.js"></script>
       
       
 
