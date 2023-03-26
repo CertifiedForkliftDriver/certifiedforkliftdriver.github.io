@@ -9,7 +9,7 @@
      crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <title>Login Page</title>
-    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/footer.css">
 
     <link rel="stylesheet" href="../css/style.css">
@@ -45,23 +45,29 @@
 
     <main>
         <section id="hero">
-            <form>
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" placeholder="Enter your email">
+            <div class="container">
+                <div class="form-wrapper">
+                    <h2>Login</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="email-input">Email:</label>
+                            <input type="email" id="email-input" name="email" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="password-input">Password:</label>
+                            <input type="password" id="password-input" name="password" required />
+                        </div>
+                        <button id="login-button" type="submit"><a>Login</a></button>
+                    </form>
+                    <div id="login-error" class="error-message"></div>
+                    <button type="submit"id="signup-button"><a>Sign up</a></button>
                 </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" id="password" placeholder="Enter your password">
-                </div>
-                <button type="submit" id="login-btn">Login</button>
-                <button type="submit" id="signup-btn">Sign up</button>
-              </form>
+            </div>
         </section>
     </main>
     <footer>
         <div class="footer-content">
-            <h3>GameBox Database</h3>
+            <h3>Changed</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut optio nostrum expedita 
             facere officia?</p>
             <ul class="socials">
@@ -76,6 +82,99 @@
             <p>copyright &copy;2023 GameBox Database</p>
         </div>
     </footer>
-    <script src="../js/menu.js"></script>
+    
+    <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js';
+
+// If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+    import { 
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut
+    } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js';
+
+    var firebaseConfig = {
+        apiKey: "AIzaSyBP_8A81Fbfmake_3Qg_5KhWd6-1XtfM0k",
+        authDomain: "gamebox-381701.firebaseapp.com",
+        projectId: "gamebox-381701",
+        storageBucket: "gamebox-381701.appspot.com",
+        messagingSenderId: "745560099853",
+        appId: "1:745560099853:web:5b2699432e6cfec03bd944",
+        measurementId: "G-GC71CVBP6X"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const toggleBtn = document.querySelector('.toggle_btn');
+    const toggleBtnIcon = document.querySelector('.toggle_btn i');
+    const dropDownMenu = document.querySelector('.dropdown_menu');
+    // Get elements from the HTML document
+    const loginForm = document.querySelector('#login-form');
+    const emailInput = document.querySelector('#email-input');
+    const passwordInput = document.querySelector('#password-input');
+    const signInButton = document.querySelector('#login-button');
+    const signUpButton = document.querySelector('#signup-button');
+    const loginError = document.querySelector('#login-error');
+    
+    toggleBtn.onclick = function () {
+      dropDownMenu.classList.toggle('open')
+      const isOpen = dropDownMenu.classList.contains('open')
+
+      toggleBtnIcon.classList = isOpen 
+      ? 'fa-solid fa-xmark'
+      : 'fa-solid fa-bars'
+    }
+    const userSignIn = async() => {
+        const signInEmail = emailInput.value;
+        const signInPassword = passwordInput.value;
+        signInWithEmailAndPassword(auth, signInEmail, signInPassword)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            alert("Signed In Successfully!");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorCode + errorMessage);
+        })
+    }
+
+    const userSignUp = async() => {
+        const signUpEmail = emailInput.value;
+        const signUpPassword = passwordInput.value;
+        createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+            alert("Account Created Successfully!");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode + errorMessage);
+        })
+    }
+
+    
+
+    signInButton.addEventListener('click', userSignIn);
+    signUpButton.addEventListener('click', userSignUp);
+    
+
+    const checkAuthState = async() => {
+        onAuthStateChanged(auth, user => {
+            if(user) {
+                alert('Secret Formula');
+            }
+            else {}
+        });
+    }
+
+    </script>
+      
+      
+
 </body>
 </html>
