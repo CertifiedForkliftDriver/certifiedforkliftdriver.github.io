@@ -1,4 +1,4 @@
-const carousel = document.querySelector('.carousel');
+carousel = document.querySelector('.carousel');
 const slideContainer = document.querySelector('.slider');
 const tempHTML = document.querySelector('#tempHTML');
 const apiEndpoint = 'https://api.rawg.io/api/games?key=6070e88e166c424cb153bfa25affa500';
@@ -25,15 +25,26 @@ async function createSlide(game) {
   slideImage.alt = game.name;
   slide.appendChild(slideImage);
 
+  const titleContainer = document.createElement('div');
+  titleContainer.classList.add('title-container');
+  slide.appendChild(titleContainer);
+
   const slideTitle = document.createElement('h3');
   slideTitle.classList.add('slide-title');
   slideTitle.textContent = game.name;
-  slide.appendChild(slideTitle);
+  titleContainer.appendChild(slideTitle);
 
-  slideContainer.appendChild(slide);
+  const slideRating = document.createElement('div');
+  slideRating.classList.add('slide-rating');
+  const ratingStars = getRatingStars(game.rating);
+   slideRating.appendChild(ratingStars);
+
+  titleContainer.appendChild(slideRating);
 
   slideImage.addEventListener('click', async () => {
-    const reviews = await getReviews(game);
+    const reviewsHTML = await getReviews(game);
+    
+    // Redirect to temporary HTML page
     const tempHTMLContent = `
       <div class="container">
         <h1 class="title">${game.name}</h1>
@@ -41,28 +52,60 @@ async function createSlide(game) {
           <span>Rating:</span>
           <span>${game.rating}</span>
         </div>
-        <div class="reviews">
-          ${reviews}
-        </div>
-        <a href="#" class="back-btn">Back to carousel</a>
+        ${reviewsHTML}
       </div>
     `;
-    tempHTML.innerHTML = tempHTMLContent;
-    carousel.style.display = 'none';
-    tempHTML.style.display = 'block';
-    const backBtn = document.querySelector('.back-btn');
-    backBtn.addEventListener('click', () => {
-      tempHTML.style.display = 'none';
-      carousel.style.display = 'block';
-    });
+    const tempWindow = window.open("", "_blank");
+    tempWindow.document.write(tempHTMLContent);
   });
+
+  slideContainer.appendChild(slide);
 }
+
+
+
+function getRatingStars(rating) {
+  const ratingContainer = document.createElement('div');
+  ratingContainer.classList.add('rating-container');
+
+  const ratingStars = document.createElement('span');
+  ratingStars.classList.add('rating-stars');
+  const fullStars = Math.floor(rating);
+  const halfStars = Math.ceil(rating - fullStars);
+  const emptyStars = 5 - fullStars - halfStars;
+  for (let i = 0; i < fullStars; i++) {
+    const starIcon = document.createElement('i');
+    starIcon.classList.add('fas', 'fa-star');
+    ratingStars.appendChild(starIcon);
+  }
+  for (let i = 0; i < halfStars; i++) {
+    const starIcon = document.createElement('i');
+    starIcon.classList.add('fas', 'fa-star-half-alt');
+    ratingStars.appendChild(starIcon);
+  }
+  for (let i = 0; i < emptyStars; i++) {
+    const starIcon = document.createElement('i');
+    starIcon.classList.add('far', 'fa-star');
+    ratingStars.appendChild(starIcon);
+  }
+  
+  const ratingNumber = document.createElement('span');
+  ratingNumber.classList.add('rating-number');
+  ratingNumber.textContent = rating.toFixed(1);
+  
+  ratingContainer.appendChild(ratingStars);
+  ratingContainer.appendChild(ratingNumber);
+  
+  return ratingContainer;
+}
+
 
 // get reviews for a game
 async function getReviews(game) {
   try {
     const response = await fetch(`https://api.rawg.io/api/games/${game.id}/reviews?key=6070e88e166c424cb153bfa25affa500`);
     const data = await response.json();
+    console.log(data.results); // added for debugging purposes
     const reviews = data.results;
     let reviewHTML = '';
     if (reviews.length > 0) {
@@ -87,6 +130,9 @@ async function getReviews(game) {
 
 
 
+
+
+
 async function initCarousel() {
   const gameNames = ["Assassin's Creed", "Minecraft", "Grand Theft Auto V", "Super Mario Odyssey", "FIFA 22", "NBA 2K22", "Madden NFL 22", "Super Mario"];
   const gameDataPromises = gameNames.map(getGameData);
@@ -95,5 +141,8 @@ async function initCarousel() {
     createSlide(game);
   });
 }
+const slides = document.querySelectorAll(".slide");
+
+
 
 initCarousel();
