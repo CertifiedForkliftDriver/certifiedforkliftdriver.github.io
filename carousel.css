@@ -1,10 +1,12 @@
+
 .carousel {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: 400px; /* adjust the height as needed */
   width: 100%;
   position: relative;
+  background-color: #1f1f1f;
 }
 
 .slider {
@@ -12,66 +14,44 @@
   width: 100%;
   height: 100%;
   overflow-x: scroll;
-  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  margin: 20px 0; /* adjust the margin between slides as needed */
 }
+
 
 .slide {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 400px;
+  height: 350px;
   width: 600px;
   margin: 0 20px;
   cursor: pointer;
   scroll-snap-align: center;
 }
 
+
 .slide-image {
-  height: 300px;
-  width: 100%;
-  object-fit: cover;
-  margin-bottom: 10px;
-  min-width: 200px;
-  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    width: 300px;
+    height: 225px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    cursor: pointer;
+    scroll-snap-align: center;
+    background-color: #171717 ;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
 }
-
-.slide-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0;
+.slide:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 }
-
-#tempHTML {
-  background-color: #1a1a1a;
-  color: #b3b3b3;
-  padding: 10px;
-}
-
-#tempHTML p {
-  font-size: 18px;
-  line-height: 1.5;
-  margin: 0;
-}
-
-#tempHTML h3 {
-  font-size: 24px;
-  margin: 20px 0 10px;
-}
-
-#tempHTML img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-}
-
-#tempHTML .review-text {
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-
 
 
 .container {
@@ -92,13 +72,14 @@
 .rating {
   font-size: 28px;
   font-weight: bold;
-  background-color: #f1c40f; /* yellow background color */
+  background-color: #f1c40f; 
   padding: 5px 10px;
   border-radius: 5px;
   display: inline-block;
   margin-bottom: 10px;
+  position: relative;
+  color: #fff;
 }
-
 
 .reviews {
   display: flex;
@@ -142,6 +123,25 @@
   cursor: pointer;
 }
 
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  color: #f1c40f;
+}
+
 .prev-button {
   left: 20px;
 }
@@ -149,3 +149,106 @@
 .next-button {
   right: 20px;
 }
+
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide-rating {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+
+
+.slide-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  color: white;
+}
+
+.slide-rating {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.slide-rating span:first-child {
+  margin-right: 0.5rem;
+}
+
+.slide-rating span:last-child {
+  padding: 0.25rem 0.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+}
+.reviews-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.rating {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.review {
+  margin-bottom: 30px;
+}
+
+.review h4 {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.review p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.review .rating {
+  font-size: 16px;
+  font-weight: bold;
+}
+
