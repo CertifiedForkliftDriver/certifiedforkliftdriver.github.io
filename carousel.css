@@ -1,0 +1,151 @@
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 100%;
+  position: relative;
+}
+
+.slider {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 600px;
+  margin: 0 20px;
+  cursor: pointer;
+  scroll-snap-align: center;
+}
+
+.slide-image {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.slide-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+#tempHTML {
+  background-color: #1a1a1a;
+  color: #b3b3b3;
+  padding: 10px;
+}
+
+#tempHTML p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+#tempHTML h3 {
+  font-size: 24px;
+  margin: 20px 0 10px;
+}
+
+#tempHTML img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+#tempHTML .review-text {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  width: 100%;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.rating {
+  font-size: 28px;
+  font-weight: bold;
+  background-color: #f1c40f; /* yellow background color */
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  overflow: hidden;
+}
+
+.review p {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+
+
+.avg-rating {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+.prev-button, .next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.prev-button {
+  left: 20px;
+}
+
+.next-button {
+  right: 20px;
+}
