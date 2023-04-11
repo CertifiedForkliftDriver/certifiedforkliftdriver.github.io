@@ -1,6 +1,5 @@
 carousel = document.querySelector('.carousel');
 const slideContainer = document.querySelector('.slider');
-const tempHTML = document.querySelector('#tempHTML');
 const apiEndpoint = 'https://api.rawg.io/api/games?key=6070e88e166c424cb153bfa25affa500';
 
 // fetch data from API for a specific game
@@ -62,8 +61,6 @@ async function createSlide(game) {
   slideContainer.appendChild(slide);
 }
 
-
-
 function getRatingStars(rating) {
   const ratingContainer = document.createElement('div');
   ratingContainer.classList.add('rating-container');
@@ -71,7 +68,7 @@ function getRatingStars(rating) {
   const ratingStars = document.createElement('span');
   ratingStars.classList.add('rating-stars');
   const fullStars = Math.floor(rating);
-  const halfStars = Math.ceil(rating - fullStars);
+  const halfStars = Mth.ceil(rating - fullStars);
   const emptyStars = 5 - fullStars - halfStars;
   for (let i = 0; i < fullStars; i++) {
     const starIcon = document.createElement('i');
@@ -98,7 +95,6 @@ function getRatingStars(rating) {
   
   return ratingContainer;
 }
-
 
 // get reviews for a game
 async function getReviews(game) {
@@ -128,13 +124,8 @@ async function getReviews(game) {
   }
 }
 
-
-
-
-
-
 async function initCarousel() {
-  const gameNames = ["Assassin's Creed", "Minecraft", "Grand Theft Auto V", "Super Mario Odyssey", "FIFA 22", "NBA 2K22", "Madden NFL 22", "Super Mario"];
+  const gameNames = ["Assassin's Creed", "Minecraft", "Grand Theft Auto V", "Super Mario Odyssey", "FIFA 22", "God of War I", "Fortnite Battle Royale", "Apex Legends"];
   const gameDataPromises = gameNames.map(getGameData);
   const gameData = await Promise.all(gameDataPromises);
   gameData.forEach(game => {
@@ -143,6 +134,5 @@ async function initCarousel() {
 }
 const slides = document.querySelectorAll(".slide");
 
-
-
 initCarousel();
+
