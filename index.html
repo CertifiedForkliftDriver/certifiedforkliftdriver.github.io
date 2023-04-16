@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-     crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
 
     <title>GameBox Database</title>
     <link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/carousel.css">
-      
+
 </head>
 
 <body>
@@ -43,13 +43,13 @@
             <li><a href="./html/top250.html">Top 250 Games</a></li>
             <li><a href="./html/contact.html">Contact</a></li>
             <li><a href="./html/login.html" class="action_btn">Get Started</a></li>
-            
+
         </div>
     </header>
-   
+
     <main>
 
-        <div class = "wrapper1">
+        <div class="wrapper1">
             <!-- logo -->
             <!--<div class = "logo">
                 <div class = "container">
@@ -58,12 +58,12 @@
             </div>-->
             <!-- end of logo -->
             <!-- search container -->
-            <div class = "search-container">
-                <div class = "search-element">
+            <div class="search-container">
+                <div class="search-element">
                     <h3>Search Game:</h3>
-                    <input type = "text" class = "form-control" placeholder="Search the GameBox ..." id = "game-search-box" onkeyup="findGames()" onclick = "findGames()">
-    
-                    <div class = "search-list" id = "search-list">
+                    <input type="text" class="form-control" placeholder="Search the GameBox ..." id="game-search-box" onkeyup="findGames()" onclick="findGames()">
+
+                    <div class="search-list" id="search-list">
                         <!-- list here -->
                         <!--<div class = "search-list-item">
                             <div class = "search-item-thumbnail">
@@ -78,13 +78,12 @@
                 </div>
             </div>
             <!-- end of search container -->
-    
+
             <!-- result container -->
-            <div class = "container">
-                <div class = "result-container">
-                    <div class = "result-grid" id = "result-grid">
-                        <!-- game information here -->
-                        <!--<div class = "game-poster">
+            <div class="container">
+                <div class="result-container">
+                    <!-- <div class = "result-grid" id = "result-grid">
+                        <div class = "game-poster">
                             <img src = "images/medium-cover.jpg" alt = "game poster">
                         </div>
                         <div class = "game-info">
@@ -100,14 +99,18 @@
                             <p class = "plot"><b>Plot:</b> The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's ecounter with his father the ambitious celestial being Ego.</p>
                             <p class = "language"><b>Language:</b> English</p>
                             <p class = "awards"><b><i class = "fas fa-award"></i></b> Nominated for 1 Oscar</p>
-                        </div> -->
+                        </div>
+                    </div> -->
+
+                    <div class="gameBox">
+                        <div class="btn playBtn">Game</div>
                     </div>
                 </div>
             </div>
             <!-- end of result container -->
         </div>
 
-        <section class="game"> 
+        <section class="game">
             <h2 class="game-list">MOST POPULAR</h2>
             <div class="button-container">
                 <button class="prev-button">&#10094;</button>
@@ -117,140 +120,133 @@
                 <div class="game-card">
                     <div class="game-image">
                         <span class="game-rating"></span>
-                        <head><link rel="stylesheet" href="style.css"></head>
+
+                        <head>
+                            <link rel="stylesheet" href="style.css">
+                        </head>
                         <a href="fifa.html">
-                        
-                        <img src="https://www.fifplay.com/img/public/fifa-23-cover-star-kylian-mbappe-psg.jpg" width="240" 
-                        height="310" class="product-thumb" alt=""></a>
-                        
+
+                            <img src="https://www.fifplay.com/img/public/fifa-23-cover-star-kylian-mbappe-psg.jpg" width="240" height="310" class="product-thumb" alt=""></a>
+
                         <button class="card-btn">add to favorites</button>
                     </div>
                     <div class="game-info">
                         <h2 class="game-name">FIFA 23</h2>
-        
+
                         <span class="price">6.8/10</span>
                     </div>
                 </div>
                 <div class="game-card">
                     <div class="game-image">
                         <span class="game-rating"></span>
-                        <img src="https://upload.wikimedia.org/wikipedia/en/0/02/CoD_Black_Ops_cover.png"width="240" 
-                        height="310" class="product-thumb" alt="">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/0/02/CoD_Black_Ops_cover.png" width="240" height="310" class="product-thumb" alt="">
                         <button class="card-btn">add to favorites</button>
                     </div>
                     <div class="game-info">
                         <h2 class="game-name">Call of Duty Black Ops</h2>
-                        
+
                         <span class="price">8.6/10</span>
                     </div>
                 </div>
                 <div class="game-card">
                     <div class="game-image">
                         <span class="game-rating"></span>
-                        <img src="https://upload.wikimedia.org/wikinews/en/7/7a/Minecraft_game_cover.jpeg"width="240" 
-                       height="310" class="product-thumb" alt="">
+                        <img src="https://upload.wikimedia.org/wikinews/en/7/7a/Minecraft_game_cover.jpeg" width="240" height="310" class="product-thumb" alt="">
                         <button class="card-btn">add to favorites</button>
                     </div>
                     <div class="game-info">
                         <h2 class="game-name">Minecraft</h2>
-                    
+
                         <span class="price">8.9/10</span>
                     </div>
                 </div>
                 <div class="game-card">
                     <div class="game-image">
                         <span class="game-rating"></span>
-                        <img src="https://impdb.org/images/a/a9/PUBG_Cover.jpg"width="240" 
-                      height="310" class="product-thumb" alt="">
+                        <img src="https://impdb.org/images/a/a9/PUBG_Cover.jpg" width="240" height="310" class="product-thumb" alt="">
                         <button class="card-btn">add to favorites</button>
                     </div>
                     <div class="game-info">
                         <h2 class="game-name">PUBG</h2>
-                        
+
                         <span class="price">7.9/10</span>
                     </div>
                 </div>
                 <div class="game-card">
                     <div class="game-image">
                         <span class="game-rating"></span>
-                        <img src= "https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg"width="240" 
-                       height="310" class="product-thumb" alt="">
+                        <img src="https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg" width="240" height="310" class="product-thumb" alt="">
                         <button class="card-btn">add to favorites</button>
                     </div>
                     <div class="game-info">
                         <h2 class="game-name">GTA V</h2>
-                      
+
                         <span class="price">9.1/10</span>
                     </div>
                 </div>
                 <div class="game-card">
                     <div class="game-image">
                         <span class="game-rating"></span>
-                        <img src = "https://cdn.europosters.eu/image/750/posters/super-mario-odyssey-collage-i50045.jpg" width="240" 
-                        height="310" class="product-thumb" alt="">
+                        <img src="https://cdn.europosters.eu/image/750/posters/super-mario-odyssey-collage-i50045.jpg" width="240" height="310" class="product-thumb" alt="">
                         <button class="card-btn">add to favorites</button>
                     </div>
                     <div class="game-info">
                         <h2 class="game-name">Mario Odyssey</h2>
-                        
+
                         <span class="price">7.7/10</span>
                     </div>
                 </div>
                 <div class="game-card">
                     <div class="game-image">
                         <span class="game-rating">Rating</span>
-                        <img src= "https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg"width="240" 
-                       height="310" class="product-thumb" alt="">
+                        <img src="https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg" width="240" height="310" class="product-thumb" alt="">
                         <button class="card-btn">add to favorites</button>
                     </div>
                     <div class="game-info">
                         <h2 class="game-name">name</h2>
-                        
+
                         <span class="price">price</span>
                     </div>
                 </div>
                 <div class="game-card">
                     <div class="game-image">
                         <span class="game-rating">Rating</span>
-                        <img src= "https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg"width="240" 
-                       height="310" class="product-thumb" alt="">
+                        <img src="https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg" width="240" height="310" class="product-thumb" alt="">
                         <button class="card-btn">add to favorites</button>
                     </div>
                     <div class="game-info">
                         <h2 class="game-name">name</h2>
-                        
+
                         <span class="price">price</span>
                     </div>
                 </div>
                 <div class="game-card">
                     <div class="game-image">
                         <span class="game-rating">Rating</span>
-                        <img src= "https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg"width="240" 
-                       height="310" class="product-thumb" alt="">
+                        <img src="https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg" width="240" height="310" class="product-thumb" alt="">
                         <button class="card-btn">add to favorites</button>
                     </div>
                     <div class="game-info">
                         <h2 class="game-name">name</h2>
-                        
+
                         <span class="price">price</span>
                     </div>
                 </div>
                 <div class="game-card">
                     <div class="game-image">
                         <span class="game-rating">Rating</span>
-                        <img src= "https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg"width="240" 
-                        height="310" class="product-thumb" alt="">                        <button class="card-btn">add to favorites</button>
+                        <img src="https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1364906194.jpg" width="240" height="310" class="product-thumb" alt=""> <button class="card-btn">add to favorites</button>
                     </div>
                     <div class="game-info">
                         <h2 class="game-name">name</h2>
-                        
+
                         <span class="price">price</span>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-                            
+
     <footer>
         <div class="footer-content">
             <h3>GameBox Database</h3>
@@ -270,4 +266,5 @@
     <script src="js/menu.js"></script>
     <script src="js/searchScript.js"></script>
 </body>
+
 </html>
