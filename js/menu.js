@@ -5,6 +5,9 @@ const dropDownMenu = document.querySelector('.dropdown_menu')
 const wrapper = document.querySelector('.wrapper');
 const loginLink = document.querySelector('.login-link');
 const registerLink = document.querySelector('.register-link');
+const logBox = document.querySelector('.loginbox');
+const loginBtn = document.querySelector('.action_btn');
+const closeBtn = document.querySelector('.icon-close');
 
 toggleBtn.onclick = function () {
     dropDownMenu.classList.toggle('open')
@@ -21,6 +24,14 @@ registerLink.addEventListener('click', ()=>{
 
 loginLink.addEventListener('click', ()=>{
     wrapper.classList.remove('active');
+})
+
+loginBtn.addEventListener('click', ()=>{
+    logBox.classList.add('active');
+})
+
+closeBtn.addEventListener('click', ()=>{
+    logBox.classList.remove('active');
 })
 //Getting started button linked with login .html file
 

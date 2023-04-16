@@ -521,7 +521,11 @@ xue code
   text-decoration: underline;
 }
 
-section#loginbox{
+.loginbox{
+  display: none;
+}
+
+.loginbox.active{
   display: flex;
   justify-content: center;
   align-items: center;
