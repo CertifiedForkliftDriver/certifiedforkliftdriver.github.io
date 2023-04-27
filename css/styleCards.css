@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap");
+
+:root {
+    /* Colors */
+    --brand-color: #208DE7;
+    --black: hsl(0, 0%, 0%);
+    --white: hsl(0, 0%, 100%);
+    /* Fonts */
+    --font-title: "Montserrat", sans-serif;
+    --font-text: "Lato", sans-serif;
+}
+
+.card {
+    display: inline-block;
+    padding: 15px;
+    margin-right: 40px;
+    margin-top: 25px;
+    place-items: center;
+    width: 80vw;
+    max-width: 21.875rem;
+    background-color: #1D1D1D;
+    /*height: 28.125rem;*/
+    height: 33rem;
+    overflow: hidden;
+    border-radius: 0.625rem;
+    box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+  }
+  
+  .card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .card h2 {
+    font-size: 1.5rem;
+    font-family: var(--font-title);
+    margin: 10px;
+    color: #208DE7;
+  }
+  
+  .card h4 {
+    font-size: 1rem;
+    margin: 5px 10px;
+    color: white;
+    font-family: var(--font-text);
+    line-height: 1.5;
+  }
+  
+  .card button {
+    display: block;
+    margin: 10px auto;
+    margin-top: 40px;
+    padding: 15px 30px;
+    border-radius: 5px;
+    background-color: #208DE7;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card button:hover {
+    background-color: #2073e7;
+    box-shadow: 0px 0px 5px #2073e7;
+  }
+
+  .title-cards {
+    display: flex;
+    padding: 100px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* .card:hover {
+    box-shadow: 0px 0px 1px #2073e7;
+    border: 1px solid #2073e7;
+  } */
+
+  /* .card:hover {
+    animation: rotate-colors 2s infinite;
+    box-shadow: 0px 0px 5px #2073e7;
+    border: 2px solid #2073e7;
+  }
+  
+  @keyframes rotate-colors {
+    0% {
+        border-color: #2073e7;
+        box-shadow: 0px 0px 5px #2073e7;
+    }
+    50% {
+        border-color: #2027e7;
+        box-shadow: 0px 0px 5px #2027e7;
+    }
+    100% {
+        border-color: #2073e7;
+        box-shadow: 0px 0px 5px #2073e7;
+    }
+  } */ 
