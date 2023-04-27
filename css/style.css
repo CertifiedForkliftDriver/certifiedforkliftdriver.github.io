@@ -133,7 +133,7 @@ header{
   position: relative;
   height: 500px;
   color: #fff;
-  background: #111111 url(./images/1.jpg) no-repeat center;
+  background: #111111;
   background-size: cover;
 }
 .content .banner .box {
@@ -642,4 +642,7 @@ section#loginbox{
 
 /*carousel code*/
 
-
+.banner-image {
+  display:flexbox;
+  size:1600ex 600px
+}

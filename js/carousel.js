@@ -72,7 +72,7 @@ async function createSlide(game) {
                 <ul class="links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="./about.html">About</a></li>
-                    <li><a href="./top250.html">Top 250 Games</a></li>
+                    <li><a href="./favorites.html">Favorites</a></li>
                     <li><a href="./contact.html">Contact</a></li>
                 </ul>
                 <a href="./login.html" class="action_btn">Login</a>
@@ -84,7 +84,7 @@ async function createSlide(game) {
             <div class="dropdown_menu">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="./about.html">About</a></li>
-                <li><a href="./top250.html">Top 250 Games</a></li>
+                <li><a href="./favorites.html">Favorites</a></li>
                 <li><a href="./contact.html">Contact</a></li>
                 <li><a href="./login.html" class="action_btn">Get Started</a></li>
                 
@@ -93,22 +93,20 @@ async function createSlide(game) {
 
         <main class="content w">
             <div class="banner mb-3">
+              <img class="banner image" src=${game.background_image}>
                 <div class="box">
-                    <img src="../images/1.jpeg">
+                    <img src="1.jpeg">
                     <div class="text">
-                        <h3>OverKill (DNF：OverKill)</h3>
-                        <p>operator: Neople</p>
-                        <p>
-                            <a href="#">windows</a>
-                            <a href="#">mac</a>
-                        </p>
-                        <button class="btn">Edit Game</button>
+                        <h3>${game.name}</h3>
+                        <p>Release Date: </p>
+                        
+                        <button ./class="btn">Favorite Game</button>
                     </div>
                 </div>
             </div>
             <div class="log mb-3">
                 <div class="pic mb-3">
-                    <img src="../images/2.jpg" alt="">
+                    <img src=${game.screenshots} alt="">
                     <img src="../images/3.jpg" alt="">
                 </div>
                 <div class="tit mb-3">Game Introduction</div>
