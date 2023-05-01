@@ -81,17 +81,20 @@
     <script src="js/gameDetails.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module">
+        
+            
+           
         const gameDetails = document.getElementById('gameContainer'); // Get the container element
-        const favBtn = gameDetails.querySelector('#fav-btn');
+        
         function getIdFromUrl() {
             const urlParams = new URLSearchParams(window.location.search);
             const gameId = urlParams.get('id');
             return gameId;
         
         }
-        getIdFromUrl()
+        
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
-        import { getDatabase } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+        import { getDatabase, ref, set, update, push, onValue } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
         import { 
             getAuth,
             createUserWithEmailAndPassword,
@@ -122,7 +125,7 @@
                 if (user) {
                     
                     //give user uniquie ID
-                    var uid = user.uid
+        
                     // User is signed in, show the favorites tab
                     $('#favorites-tab').show();
                     $('#login-func').hide();
@@ -136,6 +139,7 @@
         }
         checkAuthState();
 
+
         $('#logout-button').on('click', () => {
         // Call the signOut() method of the Firebase auth object
                 auth.signOut().then(() => {
@@ -145,22 +149,34 @@
                 });
             });
         //submit game
-        onAuthStateChanged(auth, user => {
-            if (user) {
-                $('#fav-btn').on('click', () => {
-                    var userRef = firebase.database().ref('users/' + uid);
-                    userRef.push({
-                        games: gameId
-                    })
-                    console.log('Saved In Favorites!');
-                });    
-                
-            } 
-            else {
-                console.log('Error, no user found');
-            }
+
+        $('#fav-btn').on('click', () => {
+        // Call const gameId = getIdFromUrl();
+            const userId = auth.currentUser.uid;
+            alert('User ID:', userId);
+            // Check if the game is already in user's favorites
+            favoritesRef.once('value').then((snapshot) => {
+                const favorites = snapshot.val() || {};
+                if (favorites[gameId]) {
+                return alert('This game is already in your favorites!');
+                } 
+                else {
+                // Add the game to user's favorites
+                favoritesRef.update(ref(database, 'users/' + userId),{ 
+                    favorites: gameId
+                }).then(() => {
+                    return alert('Game added to favorites!');
+                }).catch((error) => {
+                    return console.error(error);
+                });
+                }
+            }).catch((error) => {
+                return console.error(error);
+            });
         });
-        
+            
+
+       
     </script>
     
     <script src="js/menu.js"></script>
