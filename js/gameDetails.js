@@ -1,6 +1,8 @@
 // We need this file in order to display games as a separate html file (same window though)
 
-const gameDetailsContainer = document.getElementById('game-details-container');
+
+
+const gameDetailsContainer = document.getElementById('gameContainer');
 
 async function loadGameDetails(){
     const urlParams = new URLSearchParams(window.location.search);
@@ -10,7 +12,10 @@ async function loadGameDetails(){
     const screenshotLink = await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=6070e88e166c424cb153bfa25affa500`);
     const gameScreenshots = await screenshotLink.json();
     displayGameDetails(gameDetails, gameScreenshots);
+    
 }
+
+
 
 function displayGameDetails(details, screenshots){
     // gameDetailsContainer.innerHTML = `
@@ -37,7 +42,7 @@ function displayGameDetails(details, screenshots){
             <p>
                Released: ${details.released}
             </p>
-            <button ./class="btn">Favorite Game</button>
+            <button id="fav-btn" class="btn">Favorite Game</button>
             </div>
         </div>
     </div>
@@ -58,8 +63,11 @@ function displayGameDetails(details, screenshots){
             <h3>${details.developers[0].name}</h3>
         </div>
     </div>
+    
+    
     `
 }
+
 
 loadGameDetails();
 

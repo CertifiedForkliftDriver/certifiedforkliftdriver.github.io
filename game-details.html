@@ -20,34 +20,35 @@
 <body>
     <header>
         <div class="navbar">
-            <a href="index.html">
+            <a href="#">
                 <img src="logo/logo.png">
             </a>
             <div class="logo"><a href="index.html">GameBox Database</a></div>
             <ul class="links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="./html/about.html">About</a></li>
-                <li><a href="./html/top250.html">The GameBox</a></li>
+                <li><a id="favorites-tab" href="./html/favorites.html">Favorites</a></li>
                 <li><a href="./html/contact.html">Contact</a></li>
             </ul>
-            <a href="./html/login.html" class="action_btn">Login</a>
+            <a id="login-func" href="./html/login.html" class="action_btn">Login</a>
+            <a id="logout-button" href="index.html" class="action_btn">Sign Out</a>
             <div class="toggle_btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
         </div>
 
         <div class="dropdown_menu">
-            <li><a href="#">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="./html/about.html">About</a></li>
-            <li><a href="./html/top250.html">Top 250 Games</a></li>
+            <li><a id="favorites-tab"href="./html/favorites.html">Favorites</a></li>
             <li><a href="./html/contact.html">Contact</a></li>
-            <li><a href="./html/login.html" class="action_btn">Get Started</a></li>
-            
+            <li><a id="login-func" href="./html/login.html" class="action_btn">Login</a></li>
+            <li><a id="logout-button" href="index.html" class="action_btn">Sign Out</a></li>
         </div>
     </header>
     
     <main class=" content w">
-        <div id="game-details-container">
+        <div id="gameContainer">
         <!-- result container -->
         <!-- <div class = "container">
             <div class = "result-container">
@@ -78,7 +79,90 @@
         </div>
     </footer> -->
     <script src="js/gameDetails.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module">
+        const gameDetails = document.getElementById('gameContainer'); // Get the container element
+        const favBtn = gameDetails.querySelector('#fav-btn');
+        function getIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameId = urlParams.get('id');
+            return gameId;
+        
+        }
+        getIdFromUrl()
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+        import { 
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js';
+
+                
+        const firebaseConfig = {
+            apiKey: "AIzaSyBP_8A81Fbfmake_3Qg_5KhWd6-1XtfM0k",
+            authDomain: "gamebox-381701.firebaseapp.com",
+            projectId: "gamebox-381701",
+            storageBucket: "gamebox-381701.appspot.com",
+            messagingSenderId: "745560099853",
+            appId: "1:745560099853:web:5b2699432e6cfec03bd944",
+            measurementId: "G-GC71CVBP6X",
+            databaseURL: "https://gamebox-381701-default-rtdb.firebaseio.com",
+        };
+                
+                // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth(app);
+        
+        const checkAuthState = async() => {
+            onAuthStateChanged(auth, user => {
+                if (user) {
+                    
+                    //give user uniquie ID
+                    var uid = user.uid
+                    // User is signed in, show the favorites tab
+                    $('#favorites-tab').show();
+                    $('#login-func').hide();
+                    $('#logout-button').show();
+                } else {
+                    // User is signed out, hide the favorites tab
+                     $('#favorites-tab').hide();
+                     $('#logout-button').hide();
+                }
+            });
+        }
+        checkAuthState();
+
+        $('#logout-button').on('click', () => {
+        // Call the signOut() method of the Firebase auth object
+                auth.signOut().then(() => {
+                    console.log('User has been signed out');
+                }).catch((error) => {
+                    console.error(error);
+                });
+            });
+        //submit game
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                $('#fav-btn').on('click', () => {
+                    var userRef = firebase.database().ref('users/' + uid);
+                    userRef.push({
+                        games: gameId
+                    })
+                    console.log('Saved In Favorites!');
+                });    
+                
+            } 
+            else {
+                console.log('Error, no user found');
+            }
+        });
+        
+    </script>
+    
     <script src="js/menu.js"></script>
-    <script src="js/searchScript.js"></script>
 </body>
 </html>
