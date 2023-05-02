@@ -49,9 +49,12 @@
     <main>
         <section id="hero">
             <h1>Favorites</h1>
-            <p>
-                Favoirtes Page 
-            </p>
+            <p id="fav-page">Favorites Page </p>
+        </section>
+        <section id="favList">
+            <ul id="favs">
+                <li id="games">Games</li>
+            </ul>
         </section>
     </main>
     <footer>
@@ -70,9 +73,13 @@
             <p>copyright &copy;2023 GameBox Database</p>
         </div>
     </footer>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module">
+        const favPage = document.getElementById('fav-page')
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js';
+        import { getDatabase, ref, set, push, update, child, get, onValue } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+    
         // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
         import { 
             getAuth,
@@ -89,11 +96,15 @@
             storageBucket: "gamebox-381701.appspot.com",
             messagingSenderId: "745560099853",
             appId: "1:745560099853:web:5b2699432e6cfec03bd944",
-            measurementId: "G-GC71CVBP6X"
+            measurementId: "G-GC71CVBP6X",
+            databaseURL: "https://gamebox-381701-default-rtdb.firebaseio.com"
         };
+        
         
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const database = getDatabase(app);
+
         const checkAuthState = async() => {
             onAuthStateChanged(auth, user => {
                 if (user) {
@@ -108,7 +119,9 @@
                 }
             });
         }
+
         checkAuthState();
+
         $('#logout-button').on('click', () => {
         // Call the signOut() method of the Firebase auth object
                 auth.signOut().then(() => {
@@ -116,7 +129,28 @@
                 }).catch((error) => {
                     console.error(error);
                 });
-            });
+        });
+
+        
+
+        const favoritesList = document.getElementById('favs');
+        const favoritesRef = ref(database, '/users/', 'userId/', 'favorites');
+        // Attach a listener to the "favorites" node in Firebase
+    
+        onValue(favoritesRef, (snapshot) => {
+            var favorites = snapshot.val();
+    
+            favoritesList.innerHTML = '';
+                // Loop through each child node of the "favorites" node and add a list item for each one
+            for (var game in favorites) {
+                var gameId = favorites[gameId];
+                var li = document.createElement('li');
+                li.textContent = gameId;
+                favoritesList.appendChild(li);
+            }
+            
+        });
+    
     </script>
     <script src="../js/menu.js"></script>
 </body>

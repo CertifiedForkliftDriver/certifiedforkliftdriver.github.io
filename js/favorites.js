@@ -1,21 +1,13 @@
 
 
-//user logged in 
-
-//get current game id/favorite/click favoirte function
-
-    //when click get game id,
-
-        //get user firebase id
-
-        //associate game with user id
-
-        //store in firebase firestore
-
-
 //on favorites page, get all games associated with user id 
 
     //access database
+    var userRef = firebase.database().ref('users/' + uid);
+        userRef.push({
+            games: ""
+        })
+
 
     //get array of game id associated with user id
 
