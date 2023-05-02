@@ -42,7 +42,7 @@ function displayGameDetails(details, screenshots){
             <p>
                Released: ${details.released}
             </p>
-            <button id="fav-btn" class="btn">Favorite Game</button>
+            <button id="fav-btn" class="action_btn" href="html/favorites.html">Favorite Game</button>
             </div>
         </div>
     </div>
@@ -70,6 +70,8 @@ function displayGameDetails(details, screenshots){
 
 
 loadGameDetails();
+
+
 
 /* <div class="user mb-3">
         <div class="item">

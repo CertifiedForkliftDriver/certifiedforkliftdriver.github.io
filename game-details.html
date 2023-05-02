@@ -94,7 +94,7 @@
         }
         
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
-        import { getDatabase, ref, set, update, push, onValue } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+        import { getDatabase, ref, set, update, push, onValue, get } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
         import { 
             getAuth,
             createUserWithEmailAndPassword,
@@ -150,18 +150,25 @@
             });
         //submit game
 
-        $('#fav-btn').on('click', () => {
-            // Call const gameId = getIdFromUrl();
+        $(document).on('click', $('#fav-btn'), () => {
+            const gameId = getIdFromUrl();
             const userId = auth.currentUser.uid;
-            
-            set(ref(database, `users/`), { 
-                userID: userId,
-            });
-            set(ref(database, `users/${userId}/favorites/gameList`), { 
-                gameID: gameId
-            });
+            alert('added to favorites');
 
+            // Retrieve the current list of game IDs for the user from the database
+            const gameIdsRef = ref(database, `users/${userId}/favorites/gameList`);
+            get(gameIdsRef).then((snapshot) => {
+                const gameIds = snapshot.val() || {};
+
+                // Add the new game ID to the list of game IDs
+                gameIds[gameId] = true;
+
+                // Update the database with the updated list of game IDs
+                update(gameIdsRef, gameIds);
+            });
         });
+
+        
         
 
        
