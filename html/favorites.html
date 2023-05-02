@@ -49,13 +49,11 @@
     <main>
         <section id="hero">
             <h1>Favorites</h1>
-            <p id="fav-page">Favorites Page </p>
+            <p id="fav-page">GAME IDS:
+
+            </p>
         </section>
-        <section id="favList">
-            <ul id="favs">
-                <li id="games">Games</li>
-            </ul>
-        </section>
+        
     </main>
     <footer>
         <div class="footer-content">
@@ -101,9 +99,11 @@
         };
         
         
+       
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const database = getDatabase(app);
+        
 
         const checkAuthState = async() => {
             onAuthStateChanged(auth, user => {
@@ -112,6 +112,29 @@
                     $('#favorites-tab').show();
                     $('#login-func').hide();
                     $('#logout-button').show();
+                    
+                    
+                    $(document).ready(function() {
+                        const userId = auth.currentUser.uid;
+                        var gameIDs;
+                        var favsList = document.getElementById('fav-page'); 
+                        const gameIDref = ref(database, `/users/${userId}/favorites/gameList/`);
+                        // Attach a listener to the "favorites" node in Firebase
+                        get(gameIDref).then((snapshot) => {
+                            gameIDs = snapshot.val();
+                            console.log(gameIDs);
+                            
+                            for (const gameID in gameIDs) {
+                                if (gameIDs.hasOwnProperty(gameID)) {
+                                    console.log(gameID);
+                                    const item = document.createElement('p');
+                                    item.textContent = gameIDs[gameID];
+                                    favsList.append(gameID, ' ');
+                                }
+                            }
+                        })
+                    });
+                    
                 } else {
                     // User is signed out, hide the favorites tab
                      $('#favorites-tab').hide();
@@ -119,7 +142,7 @@
                 }
             });
         }
-
+        
         checkAuthState();
 
         $('#logout-button').on('click', () => {
@@ -130,27 +153,8 @@
                     console.error(error);
                 });
         });
-
         
-
-        const favoritesList = document.getElementById('favs');
-        const favoritesRef = ref(database, '/users/', 'userId/', 'favorites');
-        // Attach a listener to the "favorites" node in Firebase
-    
-        onValue(favoritesRef, (snapshot) => {
-            var favorites = snapshot.val();
-    
-            favoritesList.innerHTML = '';
-                // Loop through each child node of the "favorites" node and add a list item for each one
-            for (var game in favorites) {
-                var gameId = favorites[gameId];
-                var li = document.createElement('li');
-                li.textContent = gameId;
-                favoritesList.appendChild(li);
-            }
-            
-        });
-    
+        
     </script>
     <script src="../js/menu.js"></script>
 </body>
