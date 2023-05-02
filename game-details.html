@@ -149,29 +149,25 @@
                 });
             });
         //submit game
+        
+            $(document).on('click', '#fav-btn', () => {
+                const gameId = getIdFromUrl();
+                const userId = auth.currentUser.uid;
+                alert('added to favorites');
 
-        $(document).on('click', $('#fav-btn'), () => {
-            const gameId = getIdFromUrl();
-            const userId = auth.currentUser.uid;
-            alert('added to favorites');
+                // Retrieve the current list of game IDs for the user from the database
+                const gameIdsRef = ref(database, `users/${userId}/favorites/gameList`);
+                get(gameIdsRef).then((snapshot) => {
+                    const gameIds = snapshot.val() || {};
 
-            // Retrieve the current list of game IDs for the user from the database
-            const gameIdsRef = ref(database, `users/${userId}/favorites/gameList`);
-            get(gameIdsRef).then((snapshot) => {
-                const gameIds = snapshot.val() || {};
+                    // Add the new game ID to the list of game IDs
+                    gameIds[gameId] = true;
 
-                // Add the new game ID to the list of game IDs
-                gameIds[gameId] = true;
-
-                // Update the database with the updated list of game IDs
-                update(gameIdsRef, gameIds);
+                    // Update the database with the updated list of game IDs
+                    update(gameIdsRef, gameIds);
+                });
             });
-        });
-
         
-        
-
-       
     </script>
     
     <script src="js/menu.js"></script>
