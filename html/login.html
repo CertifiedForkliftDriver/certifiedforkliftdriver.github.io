@@ -67,7 +67,7 @@
                         <div class="remember-forget">
                             <label for=""><input type="checkbox">
                             Remember me</label>
-                            <a href=>Forgot Password?</a>
+                            <a id="forgot-pass" href="./ForgotPassword.html">Forgot Password?</a>
                         </div>
                         <button id="login-button" class="btn" type="button">Login</button>
                         <div class="login-register">
@@ -172,6 +172,9 @@
             });
         }
         checkAuthState();
+        // Get the button element
+
+
         
         $('#logout-button').on('click', () => {
         // Call the signOut() method of the Firebase auth object
