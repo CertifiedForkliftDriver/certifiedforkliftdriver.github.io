@@ -49,10 +49,12 @@
     <main>
         <section id="hero">
             <h1>Favorites</h1>
-            <p id="fav-page">vFavoirtes Page </p>
+            <p id="fav-page">Favorites Page </p>
         </section>
-        <section id="favorites-list">
-            <ul id="favorites"></ul>
+        <section id="favList">
+            <ul id="favs">
+                <li id="games">Games</li>
+            </ul>
         </section>
     </main>
     <footer>
@@ -129,45 +131,26 @@
                 });
         });
 
-        function displayFavorites() {
-            const userId = auth.currentUser.uid;
-            favoritesRef.child(userId).child('favorites').once('value', (snapshot) => {
-                const favorites = snapshot.val() || {
-                };
-                // Render the list of favorite games on the page
-                // For example:
-                const favoritesList = document.getElementById($('#fav-page'));
-                favoritesList = [''];
-                Object.keys(favorites).forEach((gameId) => {
-                const li = document.createElement('li');
-                li.textContent = gameId;
-                favoritesList.appendChild(li);
-                });
-            });
-        }
-        const favoritesList = document.getElementById('favorites');
-        const userId = auth.currentUser.uid;
+        
 
+        const favoritesList = document.getElementById('favs');
+        const favoritesRef = ref(database, '/users/', 'userId/', 'favorites');
         // Attach a listener to the "favorites" node in Firebase
-        onValue(ref(database,'/users/', userId , '/favorites'), (snapshot) => {
-        // Clear the existing list items
+    
+        onValue(favoritesRef, (snapshot) => {
+            var favorites = snapshot.val();
+    
             favoritesList.innerHTML = '';
-            // Loop through each child node of the "favorites" node and add a list item for each one
-            snapshot.forEach((childSnapshot) => {
-                const game = childSnapshot.val();
-                const li = document.createElement('li');
+                // Loop through each child node of the "favorites" node and add a list item for each one
+            for (var game in favorites) {
+                var gameId = favorites[gameId];
+                var li = document.createElement('li');
                 li.textContent = gameId;
                 favoritesList.appendChild(li);
-            });
+            }
+            
         });
-
-        
-
-        
-
-
     
-        
     </script>
     <script src="../js/menu.js"></script>
 </body>

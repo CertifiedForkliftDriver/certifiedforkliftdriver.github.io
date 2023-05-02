@@ -151,30 +151,18 @@
         //submit game
 
         $('#fav-btn').on('click', () => {
-        // Call const gameId = getIdFromUrl();
+            // Call const gameId = getIdFromUrl();
             const userId = auth.currentUser.uid;
-            alert('User ID:', userId);
-            // Check if the game is already in user's favorites
-            favoritesRef.once('value').then((snapshot) => {
-                const favorites = snapshot.val() || {};
-                if (favorites[gameId]) {
-                return alert('This game is already in your favorites!');
-                } 
-                else {
-                // Add the game to user's favorites
-                favoritesRef.update(ref(database, 'users/' + userId),{ 
-                    favorites: gameId
-                }).then(() => {
-                    return alert('Game added to favorites!');
-                }).catch((error) => {
-                    return console.error(error);
-                });
-                }
-            }).catch((error) => {
-                return console.error(error);
-            });
-        });
             
+            set(ref(database, `users/`), { 
+                userID: userId,
+            });
+            set(ref(database, `users/${userId}/favorites/gameList`), { 
+                gameID: gameId
+            });
+
+        });
+        
 
        
     </script>
