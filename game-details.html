@@ -151,13 +151,14 @@
         //submit game
         
             $(document).on('click', '#fav-btn', () => {
-                const gameId = getIdFromUrl();
-                const userId = auth.currentUser.uid;
-                alert('added to favorites');
-
-                // Retrieve the current list of game IDs for the user from the database
-                const gameIdsRef = ref(database, `users/${userId}/favorites/gameList`);
-                get(gameIdsRef).then((snapshot) => {
+                onAuthStateChanged(auth, user => {
+                if (user) {
+                    const gameId = getIdFromUrl();
+                    const userId = auth.currentUser.uid;
+                    alert('Added to favorites');
+                    // Retrieve the current list of game IDs for the user from the database
+                    const gameIdsRef = ref(database, `users/${userId}/favorites/gameList`);
+                    get(gameIdsRef).then((snapshot) => {
                     const gameIds = snapshot.val() || {};
 
                     // Add the new game ID to the list of game IDs
@@ -165,7 +166,13 @@
 
                     // Update the database with the updated list of game IDs
                     update(gameIdsRef, gameIds);
+                    window.location.href = "html/favorites.html";
                 });
+                } else {
+                    alert("Sign in To Start Favoriting Games!");
+                }
+            });
+                
             });
         
     </script>
