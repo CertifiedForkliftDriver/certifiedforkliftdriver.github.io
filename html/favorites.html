@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/footer.css">
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/styleCards.css">
 </head>
 
 <body>
@@ -47,11 +48,10 @@
     </header>
 
     <main>
-        <section id="hero">
-            <h1>Favorites</h1>
-            <p id="fav-page">GAME IDS:
-
-            </p>
+        <section class="title-cards">
+            <div id="cards-container">
+                <div id="games" class="row"></div>
+            </div>
         </section>
         
     </main>
@@ -71,8 +71,12 @@
             <p>copyright &copy;2023 GameBox Database</p>
         </div>
     </footer>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+    crossorigin="anonymous"></script>
+    <script src="js/titleCards.js" defer></script>
     <script type="module">
         const favPage = document.getElementById('fav-page')
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js';
@@ -113,24 +117,72 @@
                     $('#login-func').hide();
                     $('#logout-button').show();
                     
-                    
                     $(document).ready(function() {
                         const userId = auth.currentUser.uid;
                         var gameIDs;
-                        var favsList = document.getElementById('fav-page'); 
+                        var favsList = document.getElementById('cards-container'); 
                         const gameIDref = ref(database, `/users/${userId}/favorites/gameList/`);
                         // Attach a listener to the "favorites" node in Firebase
+
+                        
                         get(gameIDref).then((snapshot) => {
-                            gameIDs = snapshot.val();
-                            console.log(gameIDs);
                             
+                            gameIDs = snapshot.val();
                             for (const gameID in gameIDs) {
-                                if (gameIDs.hasOwnProperty(gameID)) {
-                                    console.log(gameID);
-                                    const item = document.createElement('p');
-                                    item.textContent = gameIDs[gameID];
-                                    favsList.append(gameID, ' ');
+                                
+                                async function loadGameDetails(){
+                                    const result = await fetch(`https://api.rawg.io/api/games/${gameID}?key=6070e88e166c424cb153bfa25affa500`);
+                                    const gameDetails = await result.json();
+                                    displayGameDetails(gameDetails);
+                                    
                                 }
+                                
+                                function displayGameDetails(gameDetails){
+                                    const div = document.createElement('div');
+                                    const image = document.createElement('img');
+                                    const title = document.createElement('h2');
+                                    const released = document.createElement('h4');
+                                    const genres = document.createElement('h4');
+                                    const rating = document.createElement('h4');
+                                    const game_page = document.createElement('button');
+                                    
+                                    game_page.setAttribute('data-game-id', gameID);
+
+                                    div.classList = 'card';
+                                    image.classList = 'card-img';
+                                    game_page.classList = 'empty';
+                                    sessionStorage.setItem('gameId', gameID);
+                                    
+                                
+                                    image.src = gameDetails.background_image;
+                                    title.innerText = `${gameDetails.name}`;
+                                    released.innerText =`Release Date: ${gameDetails.released}`;
+                                    
+                                    // Use a for...of loop to concatenate genres into a single string
+                                    let genreString = '';
+                                    for (const genre of gameDetails.genres) {
+                                        genreString += genre.name + ' | ';
+                                    }
+                                    genres.innerText = genreString.slice(0, -3); // remove the last ' | ' separator
+
+                                    if (gameDetails.rating == 0){
+                                        rating.innerText = 'Rating: N/A';
+                                    } else {
+                                        rating.innerText = `Rating: ${gameDetails.rating}`
+                                    }
+                                    game_page.textContent = 'View Game Info';
+                                
+                                    div.appendChild(image);
+                                    div.appendChild(title);
+                                    div.appendChild(released);
+                                    div.appendChild(genres);
+                                    div.appendChild(rating);
+                                    div.appendChild(game_page);
+                                    favsList.appendChild(div);
+                                    
+                                }
+                                loadGameDetails();
+                                
                             }
                         })
                     });
@@ -157,6 +209,7 @@
         
     </script>
     <script src="../js/menu.js"></script>
+    
 </body>
 </html>
 
