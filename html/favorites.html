@@ -71,7 +71,7 @@
             <p>copyright &copy;2023 GameBox Database</p>
         </div>
     </footer>
-    <script src="../js/titleCards.js" defer></script>
+    
     <script
     src="https://code.jquery.com/jquery-3.6.4.min.js"
     integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
@@ -80,7 +80,16 @@
     <script type="module">
         const favPage = document.getElementById('fav-page')
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js';
-        import { getDatabase, ref, set, push, update, child, get, onValue } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
+        import { getDatabase, 
+            ref, 
+            set, 
+            push, 
+            update, 
+            child, 
+            get, 
+            onValue,
+            remove
+        } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
     
         // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
         import { 
@@ -123,10 +132,7 @@
                         var favsList = document.getElementById('cards-container'); 
                         const gameIDref = ref(database, `/users/${userId}/favorites/gameList/`);
                         // Attach a listener to the "favorites" node in Firebase
-
-                        
                         get(gameIDref).then((snapshot) => {
-                            
                             gameIDs = snapshot.val();
                             for (const gameID in gameIDs) {
                                 
@@ -144,21 +150,23 @@
                                     const released = document.createElement('h4');
                                     const genres = document.createElement('h4');
                                     const rating = document.createElement('h4');
-                                    const game_page = document.createElement('button');
                                     const remove_game = document.createElement('button');
 
                                     remove_game.setAttribute('data-game-id', gameID);
-                                    game_page.setAttribute('data-game-id', gameID);
+                                    
 
                                     div.classList = 'card';
                                     image.classList = 'card-img';
-                                    game_page.classList = 'empty';
+                                    remove_game.classList = 'empty';
                                     sessionStorage.setItem('gameId', gameID);
                                 
-                                    game_page.onclick = (event) => {
+                                    remove_game.onclick = (event) => {
                                         const gameId = event.target.getAttribute('data-game-id');
-                                        const url = `game-details.html?id=${gameId}`;
-                                        window.location.href = url;
+                                        const gameRef = ref(database, `/users/${userId}/favorites/gameList/${gameId}`);
+                                        remove(gameRef);
+                                        alert("Game Removed From Favorites!");
+                                        location.reload();
+                                        
                                     }
                                     
                                 
@@ -178,14 +186,14 @@
                                     } else {
                                         rating.innerText = `Rating: ${gameDetails.rating}`
                                     }
-                                    game_page.textContent = 'View Game Info';
+                                    remove_game.textContent = 'Remove Game';
                                 
                                     div.appendChild(image);
                                     div.appendChild(title);
                                     div.appendChild(released);
                                     div.appendChild(genres);
                                     div.appendChild(rating);
-                                    div.appendChild(game_page);
+                                    div.appendChild(remove_game);
                                     favsList.appendChild(div);
                                     
                                 }
