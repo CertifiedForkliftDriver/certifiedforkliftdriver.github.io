@@ -33,8 +33,12 @@ function displayGameDetails(details, screenshots){
     // </div>
     // `;
     gameDetailsContainer.innerHTML = `
-    <div class="banner mb-3">
+    <div class="banner mb-3" >
+        <div class="game-image-container">
+        <img src="${screenshots.results[3].image}">
+        </div>
         <div class="box">
+            
             <img src="${(details.background_image != null) ? details.background_image : "images/image_not_found.png"}" alt = "game poster">
             <div class="text">
             <h3 class= "game-title">${details.name}</h3>
