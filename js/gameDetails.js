@@ -7,9 +7,9 @@ const gameDetailsContainer = document.getElementById('gameContainer');
 async function loadGameDetails(){
     const urlParams = new URLSearchParams(window.location.search);
     const gameId = urlParams.get('id');
-    const result = await fetch(`https://api.rawg.io/api/games/${gameId}?key=6070e88e166c424cb153bfa25affa500`);
+    const result = await fetch(`https://api.rawg.io/api/games/${gameId}?key=165cef52ff124c82ae9fe6b59d64a946`);
     const gameDetails = await result.json();
-    const screenshotLink = await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=6070e88e166c424cb153bfa25affa500`);
+    const screenshotLink = await fetch(`https://api.rawg.io/api/games/${gameId}/screenshots?key=165cef52ff124c82ae9fe6b59d64a946`);
     const gameScreenshots = await screenshotLink.json();
     displayGameDetails(gameDetails, gameScreenshots);
     

@@ -1,6 +1,6 @@
 const cardsContainer = document.querySelector('#cards-container');
 
-fetch('https://api.rawg.io/api/games?dates=2023-06-01,2024-12-31&ordering=-added&key=6070e88e166c424cb153bfa25affa500')
+fetch('https://api.rawg.io/api/games?dates=2023-06-01,2024-12-31&ordering=-added&key=165cef52ff124c82ae9fe6b59d64a946')
 .then(response => response.json())
 .then(topGame => {
     renderGames(topGame.results)

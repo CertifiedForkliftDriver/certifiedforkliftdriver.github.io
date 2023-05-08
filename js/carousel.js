@@ -1,6 +1,6 @@
 carousel = document.querySelector('.carousel');
 const slideContainer = document.querySelector('.slider');
-const apiEndpoint = 'https://api.rawg.io/api/games?key=6070e88e166c424cb153bfa25affa500';
+const apiEndpoint = 'https://api.rawg.io/api/games?key=165cef52ff124c82ae9fe6b59d64a946';
 
 // fetch data from API for a specific game
 async function getGameData(gameName) {
@@ -88,7 +88,7 @@ function getRatingStars(rating) {
 // get reviews for a game
 async function getReviews(game) {
   try {
-    const response = await fetch(`https://api.rawg.io/api/games/${game.id}/reviews?key=6070e88e166c424cb153bfa25affa500`);
+    const response = await fetch(`https://api.rawg.io/api/games/${game.id}/reviews?key=165cef52ff124c82ae9fe6b59d64a946`);
     const data = await response.json();
     console.log(data.results); // added for debugging purposes
     const reviews = data.results;
