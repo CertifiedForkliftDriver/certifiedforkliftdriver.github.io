@@ -1,5 +1,5 @@
-// Titles: https://api.rawg.io/api/games?key=6070e88e166c424cb153bfa25affa500&search=${searchTerm}
-// details: https://api.rawg.io/api/games/${game.dataset.id}?key=6070e88e166c424cb153bfa25affa500`
+// Titles: https://api.rawg.io/api/games?key=165cef52ff124c82ae9fe6b59d64a946&search=${searchTerm}
+// details: https://api.rawg.io/api/games/${game.dataset.id}?key=165cef52ff124c82ae9fe6b59d64a946`
 
 const gameSearchBox = document.getElementById('game-search-box');
 const searchList = document.getElementById('search-list');
@@ -7,7 +7,7 @@ const resultGrid = document.getElementById('result-grid');
 
 // load games from API
 async function loadGames(searchTerm){
-    const URL = `https://api.rawg.io/api/games?key=6070e88e166c424cb153bfa25affa500&search=${searchTerm}`;
+    const URL = `https://api.rawg.io/api/games?key=165cef52ff124c82ae9fe6b59d64a946&search=${searchTerm}`;
     const res = await fetch(`${URL}`);
     const data = await res.json();
     //console.log(data);
