@@ -81,7 +81,7 @@ async function displayGameDetails(details, screenshots){
         </div>
     </div>
     <div class="log mb-3">
-    <div class="pic mb-3">
+    <div class="pic mb-3" >
     <img src="${getScreenshotUrl(screenshots, 0)}">
     <img src="${getScreenshotUrl(screenshots, 1)}">
     <img src="${getScreenshotUrl(screenshots, 2)}">
