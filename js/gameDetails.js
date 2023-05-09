@@ -76,7 +76,7 @@ async function displayGameDetails(details, screenshots){
                Released: ${(details.released !=null) ? details.released: "N/A"}
             </p>
             <p>Platforms: ${details.platforms.map(platform => platform.platform.name).join(', ')}</p>
-            <button class="btn1" href="html/favorites.html">Favorite Game</button>
+            <button class="btn1" id="fav-btn" href="html/favorites.html">Favorite Game</button>
             </div>
         </div>
     </div>
